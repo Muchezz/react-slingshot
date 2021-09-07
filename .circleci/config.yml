@@ -1,5 +1,7 @@
 version: 2.1
 jobs:
+
+#Building Job
   build:
     docker:
       - image: circleci/node:13.8.0
@@ -8,7 +10,7 @@ jobs:
       - run: npm i
       - run: npm run lint
 
-# Working with Enviroment Variables
+# Testing Job
 
   test:
     docker: 
@@ -17,6 +19,7 @@ jobs:
       - checkout
       - run: npm i
       - run: npm run test
+#Auditing Job
 
   analyze:
       docker:
@@ -31,7 +34,7 @@ workflows:
   
   welcome:
     jobs:
-      - bulid
+      - build
       - test:
           requires:
             - build
